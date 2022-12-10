@@ -3,6 +3,8 @@ Container for sending Faxes with a FritzBox using IAXmodem and T38modem with Hyl
 
 This Container installs the Ubuntu 18.04 base environment
 
+
+
 On top there is meant to be
 
 IAX-Modem    -    Software Modem that emulates a legacy hardware Modem
@@ -12,6 +14,8 @@ T38-Modem    -    Software Modem that also emulates a legacy modem but transfers
 HylaFax      -    Arguably the most professionally developed open-source Fax-Sending-Software
 
 Asterisk     -    A Software Telephony Server that supports SIP and can connect to the FritzBox
+
+
 
 
 Theory:
