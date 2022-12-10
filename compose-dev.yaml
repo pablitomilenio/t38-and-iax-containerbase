@@ -1,0 +1,10 @@
+version: '3'
+services:
+  faxing-service: 
+    container_name: "fax-container-bionic"
+    #needs to be reconfigured for node:
+    ports:
+      - "8081:80"
+    image: fax-containerbase
+    # the following command keeps the container running forever:
+    command: tail -F anything
