@@ -5,13 +5,13 @@ This Container installs the Ubuntu 18.04 base environment
 
 On top there is meant to be
 
-IAX-Modem
+IAX-Modem    -    Software Modem that emulates a legacy hardware Modem
 
-T38-Modem
+T38-Modem    -    Software Modem that also emulates a legacy modem but transfers via the T38 Protocol instead over tones
 
-HylaFax
+HylaFax      -    Arguably the most professionally developed open-source Fax-Sending-Software
 
-Asterisk Phone Server
+Asterisk     -    A Software Telephony Server that supports SIP and can connect to the FritzBox
 
 
 Theory:
