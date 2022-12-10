@@ -13,7 +13,7 @@ T38-Modem    -    Software Modem that also emulates a legacy modem but transfers
 
 HylaFax      -    Arguably the most professionally developed open-source Fax-Sending-Software
 
-Asterisk     -    A Software Telephony Server that supports SIP and can connect to the FritzBox
+Asterisk     -    A Software Switchbox (Telefonzentrale) that supports SIP and can connect to the FritzBox
 
 
 
