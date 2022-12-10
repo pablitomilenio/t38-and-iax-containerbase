@@ -1,22 +1,27 @@
 # Set the base image to Ubuntu 18.4
 FROM ubuntu:bionic
 
-# Info: please name this image: "fax-containerbase" for further use in docker" for further use in compose
+# Info: please name this image: "FOIP-containerbase" for further use in docker" for further use in compose
 
-# Update the repository sources list and install CAPI
-RUN apt-get update && apt-get install -y capiutils libcapi20-3 git wget
+# Update the repository sources list and install CAPI (As a small addition to the container functionalities)
+# RUN apt-get install -y capiutils libcapi20-3 git wget
+
+# Update to the latest packages list
+RUN apt-get update
+
+# Install IAX Modem
+RUN sudo apt-get install iaxmodem -y
+
+# Install T.38 Modem
+RUN sudo apt-get install t38modem -y
+
+# Install The Asterix Phone Central
+RUN sudo apt-get install asterisk -y
+
+# Install HylaFax
+RUN sudo apt-get install hylafax-server -y
 
 # Mark the working directory as safe
 RUN git config --global --add safe.directory /com.docker.devenvironments.code
 
-# Uncomment the following 3 lines for the Roger Router GUI
-RUN apt-get install -y flatpak 
-RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-RUN flatpak install -y https://dl.flathub.org/repo/appstream/org.tabos.roger.flatpakref
 
-# Install Roger Router CLI
-#RUN wget http://launchpadlibrarian.net/461419922/roger-router-cli_1.8.14-5_amd64.deb
-#RUN dpkg -i roger-router-cli_1.8.14-5_amd64.de
-
-# Install Roger Router CLI Dependencies
-#RUN apt-get -f install
