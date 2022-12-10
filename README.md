@@ -22,8 +22,9 @@ The current Internet and the TCP Protocol divide everyting into packets (non con
 The Software Modems that I am providing in this container work over the SIP Protocol using the capabilities of a FritzBox
 they simulate an old phone line communication over VoIP
 
-The picture shows how from a foreign country behind VPN the connection still establishes, but tries to make adjustments to correct line jitter because of the VPN encryption
+The advantage of the T38 protocol, according to AVM, the FritzBox manufacturer, is that the transmission takes place over a Network-Protocol and not over Signal-Tones which can be corrupted by the TCP Protocol
+
+![image](https://user-images.githubusercontent.com/34131550/206872174-895cac75-5988-462e-90c2-0a508ce1aaa0.png)
 
 
-![call accepted](https://user-images.githubusercontent.com/34131550/206871856-7fb2ec09-77cf-4d60-b1b5-be1ba42cb460.png)
 
