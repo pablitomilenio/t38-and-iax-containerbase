@@ -26,5 +26,4 @@ The advantage of the T38 protocol, according to AVM, the FritzBox manufacturer, 
 
 ![image](https://user-images.githubusercontent.com/34131550/206872174-895cac75-5988-462e-90c2-0a508ce1aaa0.png)
 
-
-
+Fax Over IP (FOIP)
