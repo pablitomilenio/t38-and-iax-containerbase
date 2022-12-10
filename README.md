@@ -16,6 +16,11 @@ HylaFax      -    Arguably the most professionally developed open-source Fax-Sen
 Asterisk     -    A Software Switchbox (Telefonzentrale) that supports SIP and can connect to the FritzBox
 
 
+The SIP Protocol used by the Asterix Server and the T.38 Protocol are some of the most important protocols that the FritzBox supports
+
+
+![image](https://user-images.githubusercontent.com/34131550/206872917-609c6034-055a-481c-b080-6c6019331766.png)
+
 
 
 Theory:
