@@ -1,4 +1,4 @@
-# Set the base image to Ubuntu 18.4
+# Set the base image to Ubuntu 18.04, which is compatible with the legacy fax packages that come precompiled
 FROM ubuntu:bionic
 
 # Info: please name this image: "FOIP-containerbase" for further use in docker" for further use in compose
