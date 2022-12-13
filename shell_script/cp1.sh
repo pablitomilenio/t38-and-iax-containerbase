@@ -1,1 +1,0 @@
-cp ./initial-configuration-files/etc-asterisk/* /etc/asterisk/

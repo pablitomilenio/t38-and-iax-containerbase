@@ -1,9 +1,10 @@
 version: '1.00'
 services:
   copiando:
-    container_name: "FOIP-faxoverip-telephonecentral-container-a"
+    container_name: "Initial File-Copy"
     image: foip-t38-iax-containerbase
-    command: bash ./shell_script/cp1.sh
+    #dir: ~/
+    command: touch thefile.txt
   faxing-service: 
     container_name: "FOIP-faxoverip-telephonecentral-container"
     #needs to be reconfigured for node:
