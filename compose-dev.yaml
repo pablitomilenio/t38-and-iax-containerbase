@@ -7,7 +7,9 @@ services:
       - "8081:80"
     image: foip-t38-iax-containerbase
     steps:
-      - name: 'bash'
-        args: ['./shell_script/cp1.sh']
-    # the following command keeps the container running forever:
+      - checkout
+      - run:
+          name: Magic Pod E2E test
+          command: bash ./shell_script/cp1.sh
+      # the following command keeps the container running forever:
     command: tail -F anything
