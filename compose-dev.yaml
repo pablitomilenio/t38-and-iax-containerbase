@@ -1,10 +1,7 @@
 version: '1.00'
 services:
   copiando:
-    steps:
-      - run:
-          name: Magic Pod E2E test
-          command: bash ./shell_script/cp1.sh
+    command: bash ./shell_script/cp1.sh
   faxing-service: 
     container_name: "FOIP-faxoverip-telephonecentral-container"
     #needs to be reconfigured for node:
