@@ -6,6 +6,8 @@ services:
     ports:
       - "8081:80"
     image: foip-t38-iax-containerbase
-    command: ./shell_script/cp1.sh
+    steps:
+      - name: 'bash'
+        args: ['./shell_script/cp1.sh']
     # the following command keeps the container running forever:
     command: tail -F anything
