@@ -1,4 +1,4 @@
-version: '3'
+version: '1.00'
 services:
   faxing-service: 
     container_name: "FOIP-faxoverip-telephonecentral-container"
