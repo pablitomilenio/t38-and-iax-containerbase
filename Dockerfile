@@ -6,22 +6,19 @@ FROM ubuntu:bionic
 # Update the repository sources list and install CAPI (As a small addition to the container functionalities)
 # RUN apt-get install -y capiutils libcapi20-3 git wget
 
-# Update to the latest packages list
+# Update to the latest packages list (mandatory, if not it will not know iaxmodem)
 RUN apt-get update
 
 # Install IAX Modem
-RUN sudo apt-get install iaxmodem -y
+RUN apt-get install iaxmodem -y
 
 # Install T.38 Modem
-RUN sudo apt-get install t38modem -y
+RUN apt-get install t38modem -y
 
 # Install The Asterix Phone Central
-RUN sudo apt-get install asterisk -y
+RUN apt-get install asterisk -y
 
 # Install HylaFax
-RUN sudo apt-get install hylafax-server -y
-
-# Mark the working directory as safe
-RUN git config --global --add safe.directory /com.docker.devenvironments.code
+RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
 
 

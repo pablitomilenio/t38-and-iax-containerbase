@@ -36,3 +36,24 @@ The advantage of the T38 protocol, according to AVM, the FritzBox manufacturer, 
 ![image](https://user-images.githubusercontent.com/34131550/206872174-895cac75-5988-462e-90c2-0a508ce1aaa0.png)
 
 Fax Over IP (FOIP)
+
+
+____________ TEMPORAL SECTION ____________
+
+Steps:
+
+1) first compile the Dockerfile into an image named "foip-t38-iax-containerbase" ( docker build -t foip-t38-iax-containerbase . )
+2) go to docker desktop and create a new development environment (beta feature)
+3) choose this github repository link in the options of docker desktop ( https://github.com/pablitomilenio/capi-fax-container-ubuntu.git )
+4) open the environment in visual studio code
+5) open the vs-code git-bash terminal
+6) run ./roger_cli --sendfax --number 053149059113 --file ~/Documents/roger_cli.pdf  -d
+Steps:
+
+1) first compile the Dockerfile into an image named "fax-containerbase" ( docker build -t fax-containerbase . )
+2) go to docker desktop and create a new development environment (beta feature)
+3) choose this github repository link in the options of docker desktop ( https://github.com/pablitomilenio/capi-fax-container-ubuntu.git )
+4) open the environment in visual studio code
+5) open the vs-code git-bash terminal
+6) run ./roger_cli --sendfax --number 053149059113 --file ~/Documents/roger_cli.pdf  -d
+

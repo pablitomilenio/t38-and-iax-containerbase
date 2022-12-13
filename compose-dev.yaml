@@ -1,10 +1,10 @@
 version: '3'
 services:
   faxing-service: 
-    container_name: "FOIP-faxoverip-container-bionic"
+    container_name: "FOIP-faxoverip-telephonecentral-container"
     #needs to be reconfigured for node:
     ports:
       - "8081:80"
-    image: FOIP-containerbase
+    image: foip-t38-iax-containerbase
     # the following command keeps the container running forever:
     command: tail -F anything
