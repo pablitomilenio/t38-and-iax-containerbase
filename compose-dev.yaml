@@ -1,14 +1,15 @@
 version: '1.00'
 services:
+  copiando:
+    steps:
+      - run:
+          name: Magic Pod E2E test
+          command: bash ./shell_script/cp1.sh
   faxing-service: 
     container_name: "FOIP-faxoverip-telephonecentral-container"
     #needs to be reconfigured for node:
     ports:
       - "8081:80"
     image: foip-t38-iax-containerbase
-    steps:
-      - run:
-          name: Magic Pod E2E test
-          command: bash ./shell_script/cp1.sh
       # the following command keeps the container running forever:
     command: tail -F anything
