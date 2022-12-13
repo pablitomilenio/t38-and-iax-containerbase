@@ -7,7 +7,7 @@ FROM ubuntu:bionic
 # RUN apt-get install -y capiutils libcapi20-3 git wget
 
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
-RUN apt-get update
+RUN apt-get update && apt-get install git wget inetutils-ping -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
@@ -16,7 +16,7 @@ RUN apt-get install iaxmodem -y
 RUN apt-get install t38modem -y
 
 # Install The Asterix Phone Central
-RUN apt-get install asterisk -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install asterisk -y
 
 # Install HylaFax
 RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
