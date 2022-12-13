@@ -1,6 +1,8 @@
 version: '1.00'
 services:
   copiando:
+    container_name: "FOIP-faxoverip-telephonecentral-container"
+    image: foip-t38-iax-containerbase-a
     command: bash ./shell_script/cp1.sh
   faxing-service: 
     container_name: "FOIP-faxoverip-telephonecentral-container"
