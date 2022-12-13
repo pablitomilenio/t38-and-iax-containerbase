@@ -1,7 +1,7 @@
 version: '1.00'
 services:
   copiando:
-    container_name: "Initial File-Copy"
+    container_name: "Initial-File-Copy"
     image: foip-t38-iax-containerbase
     #dir: ~/
     command: touch thefile.txt
