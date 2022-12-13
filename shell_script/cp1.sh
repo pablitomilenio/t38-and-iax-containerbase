@@ -1,1 +1,1 @@
-cp /com.docker.devenvironments.code/initial-configuration-files/etc-asterisk/* /etc/asterisk/
+cp ./initial-configuration-files/etc-asterisk/* /etc/asterisk/
