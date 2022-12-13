@@ -9,7 +9,7 @@ services:
     container_name: "FOIP-faxoverip-telephonecentral-container"
     #needs to be reconfigured for node:
     ports:
-      - "8081:80"
+     # - "8081:80"
       - "5060:5060"
       - "6060:6060"
     image: foip-t38-iax-containerbase
