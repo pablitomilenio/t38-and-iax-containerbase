@@ -10,6 +10,8 @@ services:
     #needs to be reconfigured for node:
     ports:
       - "8081:80"
+      - "5060:5060"
+      - "6060:6060"
     image: foip-t38-iax-containerbase
     command: touch thefile.txt
       # the following command keeps the container running forever:
