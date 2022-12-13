@@ -25,4 +25,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem
 
+# Run initial config
+CMD sh initial-setup.sh
+
 
