@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foip-deployment
+  labels:
+    app: foip-fax-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: foip-fax-app
+  template:
+    metadata:
+      labels:
+        app: foip-fax-app
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/eddiehubcommunity/linkfree:latest
+          ports:
+            - containerPort: 5000
