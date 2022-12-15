@@ -30,12 +30,16 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y
 # Install Node.js
 RUN DEBIAN_FRONTEND=noninteractive apt-get install node.js npm -y 
 
-# Install Express
-CMD npm install -g express
+# Make Folders
+RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/express
 
 # Copy configuration files
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk
-COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem
+COPY website/* /home/root/website
+COPY website/express* /home/root/website/express
+
+# Install Express
+RUN npm --prefix /home/root/website/ install /home/root/website
 
 # Run initial config
 # CMD sh initial-setup.sh
