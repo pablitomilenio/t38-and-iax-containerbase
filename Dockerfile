@@ -28,7 +28,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install asterisk -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
 
 # Install Node.js
-RUN DEBIAN_FRONTEND=noninteractive apt-get install node.js -y 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install node.js npm -y 
+
+# Install Express
+CMD npm install -g express
 
 # Copy configuration files
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk
