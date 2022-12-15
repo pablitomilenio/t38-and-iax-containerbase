@@ -4,8 +4,8 @@ metadata:
   name: foip-webserver-service
 spec:
   selector:
-    app: foip
+    app: eddiehub-linkfree
   ports:
     - protocol: TCP
       port: 3000
-      targetPort: 300
+      targetPort: 3000

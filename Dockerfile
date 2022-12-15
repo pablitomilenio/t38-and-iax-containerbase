@@ -35,6 +35,7 @@ RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/exp
 
 # Copy configuration files
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk
+COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem
 COPY website/* /home/root/website
 COPY website/express* /home/root/website/express
 
