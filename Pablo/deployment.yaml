@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: foip-container
-    image: pablitomilenios/fax-foip-fritzbox:version4
+    image: pablitomilenios/fax-foip-fritzbox:version5
     args:
     - /bin/sh
     - -c
