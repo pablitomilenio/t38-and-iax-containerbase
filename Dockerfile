@@ -27,6 +27,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install asterisk -y
 # Install HylaFax
 RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
 
+# Install Node.js
+RUN DEBIAN_FRONTEND=noninteractive apt-get install node.js -y 
+
 # Copy configuration files
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem
