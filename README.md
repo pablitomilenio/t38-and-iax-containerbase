@@ -13,13 +13,15 @@ Create a folder on your computer and in this folder run the following, through t
 
 ----
 
+minikube start
+
 git clone https://github.com/pablitomilenio/t38-and-iax-containerbase.git
 
 cd t38-and-iax-containerbase
 
 kubectl apply -f Start-Fax-Service
 
-kubectl port-forward pod/foip-app 3000:3000
+start kubectl port-forward pod/foip-app 3000:3000
 
 ----
 

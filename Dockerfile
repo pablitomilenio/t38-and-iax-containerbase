@@ -45,7 +45,8 @@ COPY website/express/styles* /home/root/website/express/styles
 # Install Express
 RUN npm --prefix /home/root/website/ install /home/root/website
 
-# Run initial config
-# CMD sh initial-setup.sh
+# Run the Node Server
+WORKDIR /home/root/website
+ENTRYPOINT [ "npm", "start" ]
 
 
