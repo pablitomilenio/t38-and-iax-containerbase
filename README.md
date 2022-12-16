@@ -21,7 +21,7 @@ cd t38-and-iax-containerbase
 
 kubectl apply -f Start-Fax-Service
 
-start kubectl "port-forward pod/foip-app 3000:3000 5060:5060 5061:5061 6060:60606"
+start kubectl "port-forward deployment/foip-app 3000:3000 5060:5060 5061:5061 6060:60606"
 
 ----
 
