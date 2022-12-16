@@ -29,3 +29,9 @@ Now open a browser and enter into http://localhost:3000
 
 (the page will only open once the pod has downloaded the docker image and started successfully)
 
+----
+
+There is an attempt to run an internal VPN tunnel. Manual Command:
+
+vpnc fritzbox
+
