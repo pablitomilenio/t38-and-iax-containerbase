@@ -17,7 +17,7 @@ EXPOSE 30000-30100:30000-30100/udp
 # RUN apt-get install -y capiutils libcapi20-3 git wget
 
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
-RUN apt-get update && apt-get install git wget inetutils-ping nano -y
+RUN apt-get update && apt-get install git wget inetutils-ping nano vpnc -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
@@ -40,6 +40,8 @@ RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/exp
 # Copy configuration files
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem
+COPY initial-configuration-files/etc-vpnc/* /etc/vpnc
+
 
 # Copy Website
 COPY website/* /home/root/website
