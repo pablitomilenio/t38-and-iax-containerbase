@@ -4,8 +4,12 @@ FROM ubuntu:bionic
 # Port exposures
 EXPOSE 5060/udp
 EXPOSE 5060/tcp
+EXPOSE 5061/udp
+EXPOSE 5061/tcp
 EXPOSE 6060/udp
 EXPOSE 6060/tcp
+EXPOSE 30000-30100:30000-30100/tcp
+EXPOSE 30000-30100:30000-30100/udp
 
 # Info: please name this image: "FOIP-containerbase" for further use in docker" for further use in compose
 
