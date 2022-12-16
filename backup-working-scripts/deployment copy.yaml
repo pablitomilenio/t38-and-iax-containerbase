@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foip-app
+  labels:
+    app: foip
+spec:
+  containers:
+  - name: foip-container
+    image: pablitomilenios/fax-foip-fritzbox:version13
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -f /tmp/healthy; sleep 600
+    livenessProbe:
+      exec:
+        command: [ls]
+      initialDelaySeconds: 5
+      periodSeconds: 5

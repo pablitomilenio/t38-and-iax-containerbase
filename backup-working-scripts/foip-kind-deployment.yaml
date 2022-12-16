@@ -18,7 +18,5 @@ spec:
       - name: foip
         image: pablitomilenios/fax-foip-fritzbox:version13
         ports:
-        - containerPort: 3000
-        - containerPort: 5060
-        - containerPort: 5061
-        - containerPort: 6060
+        - containerPort: 80
+        - containerPort: 9443
