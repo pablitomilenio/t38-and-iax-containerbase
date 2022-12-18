@@ -53,6 +53,6 @@ RUN npm --prefix /home/root/website/ install /home/root/website
 
 # Run the Node Server
 WORKDIR /home/root/website
-ENTRYPOINT [ "npm", "start" ]
+#ENTRYPOINT [ "npm", "start" ]
 
 
