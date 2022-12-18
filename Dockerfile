@@ -38,18 +38,18 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install node.js npm -y
 RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/express && mkdir /home/root/website/express/styles
 
 # Copy configuration files
-COPY initial-configuration-files/etc-asterisk/* /etc/asterisk
-COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem
-COPY initial-configuration-files/etc-vpnc/* /etc/vpnc
+COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
+COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
+COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
 
 
 # Copy Website
-COPY website/* /home/root/website
-COPY website/express* /home/root/website/express
-COPY website/express/styles* /home/root/website/express/styles
+COPY website/* /home/root/website/
+COPY website/express* /home/root/website/express/
+COPY website/express/styles* /home/root/website/express/styles/
 
 # Install Express
-RUN npm --prefix /home/root/website/ install /home/root/website
+RUN npm --prefix /home/root/website/ install /home/root/website/
 
 # Run the Node Server
 WORKDIR /home/root/website
