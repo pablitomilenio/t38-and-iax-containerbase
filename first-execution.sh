@@ -1,8 +1,8 @@
-# First Execution Script
+#!/bin/bash
 
-service iaxmodem start &
-service asterisk start &
-iaxmodem ttyIAX0 &
-asterisk &
-cd /home/root/website
-npm start &
+exec service iaxmodem start &
+exec service asterisk start &
+exec service hylafax start &
+exec iaxmodem ttyIAX0 &
+exec asterisk &
+exec node /home/root/website/server.js

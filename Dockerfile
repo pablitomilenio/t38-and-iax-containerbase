@@ -18,7 +18,7 @@ EXPOSE 30000-30100:30000-30100/udp
 # Update the repository sources list and install CAPI (As a small addition to the container functionalities)
 # RUN apt-get install -y capiutils libcapi20-3
 
-RUN apt-get update && apt-get install curl
+RUN apt-get update && apt-get install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
@@ -37,7 +37,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install asterisk -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
 
 # Install Node.js
-RUN DEBIAN_FRONTEND=noninteractive apt-get install node.js npm -y 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install nodejs -y 
 
 # Make Folders
 RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/express && mkdir /home/root/website/express/styles
@@ -49,7 +49,8 @@ COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
 
 
 # Copy Website
-COPY website/* /home/root/website/
+COPY first-execution.sh /home/root/
+COPY website/ /home/root/website/
 COPY website/express* /home/root/website/express/
 COPY website/express/styles* /home/root/website/express/styles/
 
@@ -58,6 +59,6 @@ COPY website/express/styles* /home/root/website/express/styles/
 
 # Run the Node Server
 WORKDIR /home/root/website
-#ENTRYPOINT [ "npm", "start" ]
+# ENTRYPOINT ["/home/root/first-execution.sh"]
 
 
