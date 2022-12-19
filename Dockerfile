@@ -16,10 +16,13 @@ EXPOSE 30000-30100:30000-30100/udp
 # Info: please name this image: "FOIP-containerbase" for further use in docker" for further use in compose
 
 # Update the repository sources list and install CAPI (As a small addition to the container functionalities)
-# RUN apt-get install -y capiutils libcapi20-3 git wget
+# RUN apt-get install -y capiutils libcapi20-3
+
+RUN apt-get update && apt-get install curl
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
-RUN apt-get update && apt-get install git wget inetutils-ping nano vpnc -y
+RUN apt-get update && apt-get install git wget inetutils-ping nano network-manager-vpnc -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
@@ -51,7 +54,7 @@ COPY website/express* /home/root/website/express/
 COPY website/express/styles* /home/root/website/express/styles/
 
 # Install Express
-RUN npm --prefix /home/root/website/ install /home/root/website/
+# RUN npm --prefix /home/root/website/ install /home/root/website/
 
 # Run the Node Server
 WORKDIR /home/root/website
