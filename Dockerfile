@@ -2,6 +2,8 @@
 FROM ubuntu:bionic
 
 # Port exposures
+EXPOSE 3000/udp
+EXPOSE 3000/tcp
 EXPOSE 5060/udp
 EXPOSE 5060/tcp
 EXPOSE 5061/udp

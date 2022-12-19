@@ -1,15 +1,86 @@
-const http = require('http');
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const fileUpload = require("express-fileupload");
+const { OutgoingMessage } = require("http");
+const { exec } = require("child_process");
+const path = require("path");
 const app = express();
-app.use(express.json());
-app.use(express.static("express"));
-// default URL for website
-app.use('/', function(req,res){
-    res.sendFile(path.join(__dirname+'/express/index.html'));
-    //__dirname : It will resolve to your project folder.
+const fs = require('fs')
+const ts = require('log-timestamp');
+
+app.use(
+  fileUpload()
+);
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/express/modes.html"));
+});
+
+app.get("/styles", (req, res) => {
+  res.sendFile(path.join(__dirname, "/express/styles/all.css"));
+});
+
+app.get("/ptxt", (req, res) => {
+  res.sendFile(path.join(__dirname, "/express/plaintext.html"));
+});
+
+
+const path_og = __dirname + "/uploads/" + "outgoing.pdf";
+
+app.get("/ulform", (req, res) => {
+  res.sendFile(path.join(__dirname, "/express/sendpdf.html"));
+
+  fs.unlink(path_og, (err) => {
+    if (err) {
+      //console.error(err)
+      return
+    }
+    //console.log("removed old outgoing fax file");
+  })
+
+});
+
+app.post("/upload", (req, res) => {
+  var recipient_tel = req.body.telnr;
+  var exec_string = "/usr/bin/sendfax -n -d " + recipient_tel 
+                    +" /home/root/website/uploads/outgoing.pdf";
+
+  if (!req.files) {
+    return res.status(400).send("No files were uploaded.");
+  }
+  if (!req.body.telnr) {
+    return res.status(400).send("A telephone number must be specified.");
+  }
+
+  const file = req.files.myFile;
+  const path = __dirname + "/uploads/" + "outgoing.pdf";
+
+  file.mv(path, (err) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    exec(exec_string, (error, stdout, stderr) => {
+
+      if (error) {
+          console.log(`error: ${error.message}`);
+          return;
+      }
+      if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          return;
+      }
+      console.log(`stdout: ${stdout}`);
+
+    });
+
+    //console.log("the location of the file that I am sending is: "+path);
+    console.log(exec_string);
+    return res.send("I am sending the fax now to: "+recipient_tel);
+
   });
-const server = http.createServer(app);
-const port = 3000;
-server.listen(port);
-console.debug('Server listening on port ' + port);
+});
+
+const port = 3000
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
