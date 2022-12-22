@@ -16,25 +16,26 @@ EXPOSE 30000-30100:30000-30100/udp
 # Info: please name this image: "FOIP-containerbase" for further use in docker" for further use in compose
 
 # Update the repository sources list and install CAPI (As a small addition to the container functionalities)
-# RUN apt-get install -y capiutils libcapi20-3
-
-RUN apt-get update && apt-get install curl -y
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+# RUN apt-get install -y capiutils libcapi20-3 git wget
 
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
-RUN apt-get update && apt-get install git wget inetutils-ping nano network-manager-vpnc -y
+RUN apt-get update && apt-get install git wget inetutils-ping nano -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
 
 # Install T.38 Modem
-RUN apt-get install t38modem -y
+# RUN apt-get install t38modem -y
 
 # Install The Asterix Phone Central
 RUN DEBIAN_FRONTEND=noninteractive apt-get install asterisk -y
 
 # Install HylaFax
 RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
+
+RUN apt-get install curl -y
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update
 
 # Install Node.js
 RUN DEBIAN_FRONTEND=noninteractive apt-get install nodejs -y 
@@ -54,10 +55,8 @@ COPY website/ /home/root/website/
 COPY website/express* /home/root/website/express/
 COPY website/express/styles* /home/root/website/express/styles/
 
-# Install Express
-# RUN npm --prefix /home/root/website/ install /home/root/website/
-
 # Run the Node Server
+RUN chmod 777 /home/root/first-execution.sh
 WORKDIR /home/root/website
 # ENTRYPOINT ["/home/root/first-execution.sh"]
 
