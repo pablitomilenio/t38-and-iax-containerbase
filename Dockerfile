@@ -47,7 +47,7 @@ RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/exp
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
-
+COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
 
 # Copy Website
 COPY first-execution.sh /home/root/
