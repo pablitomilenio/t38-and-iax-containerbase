@@ -11,9 +11,13 @@ Download the container using
 
 sudo docker pull pablitomilenios/fritzbox-foip-fax-over-ip:latest
 
+( https://hub.docker.com/repository/docker/pablitomilenios/fritzbox-foip-fax-over-ip )
+
 then run the container using
 
 sudo docker run -P -ti --network=host pablitomilenios/fritzbox-foip-fax-over-ip
+
+This container works only on Linux
 
 when the container is running enter into:
 
