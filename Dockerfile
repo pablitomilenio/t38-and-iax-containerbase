@@ -55,6 +55,9 @@ COPY website/ /home/root/website/
 COPY website/express* /home/root/website/express/
 COPY website/express/styles* /home/root/website/express/styles/
 
+# Run NPM Install
+npm --prefix /home/root/website install /home/root/website
+
 # Run the Node Server
 RUN chmod 777 /home/root/first-execution.sh
 WORKDIR /home/root/website
