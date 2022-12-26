@@ -51,6 +51,7 @@ COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
 
 # Copy Website
 COPY first-execution.sh /home/root/
+COPY Test-Fax-PDF.pdf /home/root/
 COPY website/ /home/root/website/
 COPY website/express* /home/root/website/express/
 COPY website/express/styles* /home/root/website/express/styles/
