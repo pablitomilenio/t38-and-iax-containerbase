@@ -62,6 +62,6 @@ RUN npm --prefix /home/root/website install /home/root/website
 # Run the Node Server
 RUN chmod 777 /home/root/first-execution.sh
 WORKDIR /home/root/
-# ENTRYPOINT ["/home/root/first-execution.sh"]
+ENTRYPOINT ["/home/root/first-execution.sh"]
 
 

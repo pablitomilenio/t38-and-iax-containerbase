@@ -65,7 +65,7 @@ app.get("/sendprot", (req, res) => {
     if (faxID > 0 ) res.write (`Latest fax ID-Number: ${faxID} \r\n\r\n\r\n\r\n`);
 
     if (faxID > 0 ) {
-      exec_string = "/usr/bin/faxstat -d | grep "+faxID+" | awk '{new_var=$3 FS $5 FS $8 FS $9 FS $10 FS $11; print new_var}' ";
+      exec_string = "/usr/bin/faxstat -d | grep '"+faxID+"   1'  | awk '{new_var=$3 FS $5 FS $8 FS $9 FS $10 FS $11; print new_var}' ";
       exec(exec_string, (error, stdout, stderr) => {
         if (stdout.length < 10) res.write("The FAX transmission is currently in progress... We will try 3x times.");
         else {
@@ -103,7 +103,8 @@ app.get("/status", (req, res) => {
 
   exec_string = "/bin/ping -c1 fritz.box | grep 'seq=0' | awk '{print $1}'";
   exec(exec_string, (error, stdout, stderr) => {
-    res.end(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 0.001 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
+    res.write(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 0.001 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
+    res.end("All conditions must be optimal, otherweise the fax will not send")
   });
 });
 
