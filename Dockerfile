@@ -41,7 +41,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install nodejs -y 
 
 # Make Folders
-RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/express && mkdir /home/root/website/express/styles && mkdir /home/root/website/uploads
+RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/express && mkdir /home/root/website/express/styles && mkdir /home/root/website/uploads && mkdir /home/root/website/prot/
 
 # Copy configuration files
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
