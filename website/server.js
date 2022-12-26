@@ -144,7 +144,7 @@ app.post("/upload", (req, res) => {
 
     //console.log("the location of the file that I am sending is: "+path);
     console.log(exec_string);
-    return res.send("I am sending the fax now to: "+recipient_tel);
+    return res.send("I am attempting to send the fax now to: "+recipient_tel+"<br><br><br><a href='/sendprot'>Read the Transmission Protocol of the last sent FAX</a>");
 
   });
 });
