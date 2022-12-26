@@ -6,6 +6,7 @@ const path = require("path");
 const app = express();
 const fs = require('fs')
 const ts = require('log-timestamp');
+const { runInNewContext } = require("vm");
 app.use(
   fileUpload()
 );
@@ -24,11 +25,20 @@ app.get("/ptxt", (req, res) => {
 
 
 const path_og = __dirname + "/uploads/" + "outgoing.pdf";
+const path_sp = __dirname + "/prot/" + "out.txt";
 
 app.get("/ulform", (req, res) => {
   res.sendFile(path.join(__dirname, "/express/sendpdf.html"));
 
   fs.unlink(path_og, (err) => {
+    if (err) {
+      //console.error(err)
+      return
+    }
+    //console.log("removed old outgoing fax file");
+  });
+
+  fs.unlink(path_sp, (err) => {
     if (err) {
       //console.error(err)
       return
@@ -40,7 +50,7 @@ app.get("/ulform", (req, res) => {
 
 
 // faxstat -d | grep '66'
-
+//Tel Nr.:'{print $3 $5 $8 $9 $10 $11 $12 $13 $14}'";
 
 app.get("/sendprot", (req, res) => {
   res.write("SENDING PROTOCOL\r\n\r\n");
@@ -48,17 +58,22 @@ app.get("/sendprot", (req, res) => {
 
   exec_string = "cat ./prot/out.txt | awk '{print $4}'";
   exec(exec_string, (error, stdout, stderr) => {
-    faxID = stdout;
-    res.write (`Last fax ID-Number: ${faxID} \r\n\r\n`);
+    faxID = Math.min(stdout.replace(/(\r\n|\n|\r)/gm, ""));
+    if (faxID > 0 ) res.write (`Last fax ID-Number: ${faxID} \r\n\r\n\r\n\r\n`);
   });
 
-  exec_string = `faxstat -d | grep ${faxID}`;
-  exec(exec_string, (error, stdout, stderr) => {
-    faxID = stdout;
-    res.write (`Last fax ID-Number: ${faxID} \r\n\r\n`);
-  });
+  if (faxID > 0 ) {
+    exec_string = "faxstat -d | grep "+faxID+" | awk '{new_var=$3 FS $5 FS $8 FS $9 FS $10 FS $11; print new_var}' ";
+    //exec_string = "faxstat -d | grep "+faxID+" | awk '{print $4}'";
+    exec(exec_string, (error, stdout, stderr) => {
+      res.write (`Results: ${stdout} \r\n\r\n`);
+      res.write("F: Fax Failed /  S: Success of Transmission");
+      res.end("");
+    });
+  } else {
+    res.end("You have to send a new fax first, before being able to see a protocol");
+  }
 
-  res.end("chau");
 });
 
 app.get("/status", (req, res) => {
@@ -71,7 +86,7 @@ app.get("/status", (req, res) => {
   
   exec_string = "sudo /usr/sbin/asterisk -rx 'iax2 show peers' | grep online | awk '{print $4}'";
   exec(exec_string, (error, stdout, stderr) => {
-    res.write(`Number of online IAX Modems: ${stdout.substring(1,2)} \r\n (should be 1) \r\n\r\n`);
+    res.write(`Number of online IAX Modems: ${stdout.substring(1,2)} \r\n (should be 1. If not wait 3 minutes for it to start) \r\n\r\n`);
   });
 
   exec_string = "faxstat -s | grep '0:' | awk '{print $1}'";
@@ -81,7 +96,7 @@ app.get("/status", (req, res) => {
 
   exec_string = "ping -c1 fritz.box | grep 'seq=1' | awk '{print $1}'";
   exec(exec_string, (error, stdout, stderr) => {
-    res.end(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 5 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
+    res.end(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 0.1 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
   });
 });
 
