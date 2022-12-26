@@ -152,5 +152,5 @@ app.post("/upload", (req, res) => {
 
 const port = 3000
 app.listen(port, () => {
-  console.log(`Fax App listening on port ${port}`)
+  console.log(`Please open http://localhost:${port} to enter the FOIP Interface`)
 })

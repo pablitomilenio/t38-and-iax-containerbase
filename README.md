@@ -7,18 +7,23 @@ from AVM Systems Berlin
 
 Installation Instructions:
 
-(For Kubernetes Minikube)
+Download the container using
 
-Create a folder on your computer and in this folder run the following, through the command line:
+sudo docker pull pablitomilenios/fritzbox-foip-fax-over-ip:latest
 
-----
+then run the container using
 
-minikube start
+sudo docker run -P -ti --network=host pablitomilenios/fritzbox-foip-fax-over-ip
 
-git clone https://github.com/pablitomilenio/t38-and-iax-containerbase.git
+when the container is running enter into:
 
-cd t38-and-iax-containerbase
+https://localhost:3000
 
-kubectl apply -f Start-Fax-Service
+in your browser.
+
+There enter the Status Page and make sure you are in the same local network of the Fritz!Box
+Make sure the SIP and IAX clients are working as indicated by the status page. This can take 3-5 minutes to load / establish connection
+
+Once ready send the PDF Fax via the designated html page for that task.
 
 ----
