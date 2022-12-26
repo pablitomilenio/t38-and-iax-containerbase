@@ -55,30 +55,31 @@ app.get("/delprot", (req, res) => {
 });
 
 
-// faxstat -d | grep '66'
-//Tel Nr.:'{print $3 $5 $8 $9 $10 $11 $12 $13 $14}'";
-
 app.get("/sendprot", (req, res) => {
   res.write("SENDING PROTOCOL\r\n\r\n");
   var faxID = 0;
 
-  exec_string = "cat ./prot/out.txt | awk '{print $4}'";
+  exec_string = "/bin/cat /home/root/website/prot/out.txt | awk '{print $4}'";
   exec(exec_string, (error, stdout, stderr) => {
     faxID = Math.min(stdout.replace(/(\r\n|\n|\r)/gm, ""));
-    if (faxID > 0 ) res.write (`Last fax ID-Number: ${faxID} \r\n\r\n\r\n\r\n`);
+    if (faxID > 0 ) res.write (`Latest fax ID-Number: ${faxID} \r\n\r\n\r\n\r\n`);
+
+    if (faxID > 0 ) {
+      exec_string = "/usr/bin/faxstat -d | grep "+faxID+" | awk '{new_var=$3 FS $5 FS $8 FS $9 FS $10 FS $11; print new_var}' ";
+      exec(exec_string, (error, stdout, stderr) => {
+        if (stdout.length < 10) res.write("The FAX transmission is currently in progress... We will try 3x times.");
+        else {
+          res.write (`Results: ${stdout} \r\n\r\n`);
+          res.write("F: Fax Failed /  S: Success of Transmission");
+        }
+        res.end("");
+      });
+    } else {
+      res.end("You have to send a new fax first, before being able to see a protocol");
+    }
   });
 
-  if (faxID > 0 ) {
-    exec_string = "faxstat -d | grep "+faxID+" | awk '{new_var=$3 FS $5 FS $8 FS $9 FS $10 FS $11; print new_var}' ";
-    //exec_string = "faxstat -d | grep "+faxID+" | awk '{print $4}'";
-    exec(exec_string, (error, stdout, stderr) => {
-      res.write (`Results: ${stdout} \r\n\r\n`);
-      res.write("F: Fax Failed /  S: Success of Transmission");
-      res.end("");
-    });
-  } else {
-    res.end("You have to send a new fax first, before being able to see a protocol");
-  }
+
 
 });
 
@@ -102,7 +103,7 @@ app.get("/status", (req, res) => {
 
   exec_string = "/bin/ping -c1 fritz.box | grep 'seq=0' | awk '{print $1}'";
   exec(exec_string, (error, stdout, stderr) => {
-    res.end(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 0.1 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
+    res.end(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 0.001 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
   });
 });
 
