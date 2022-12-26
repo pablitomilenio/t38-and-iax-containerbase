@@ -25,7 +25,6 @@ app.get("/ptxt", (req, res) => {
 
 
 const path_og = __dirname + "/uploads/" + "outgoing.pdf";
-const path_sp = __dirname + "/prot/" + "out.txt";
 
 app.get("/ulform", (req, res) => {
   res.sendFile(path.join(__dirname, "/express/sendpdf.html"));
@@ -38,6 +37,12 @@ app.get("/ulform", (req, res) => {
     //console.log("removed old outgoing fax file");
   });
 
+});
+
+
+const path_sp = __dirname + "/prot/" + "out.txt";
+
+app.get("/delprot", (req, res) => {
   fs.unlink(path_sp, (err) => {
     if (err) {
       //console.error(err)
@@ -45,6 +50,7 @@ app.get("/ulform", (req, res) => {
     }
     //console.log("removed old outgoing fax file");
   })
+  res.end("Deleted the old sending protocol. A new protocol will be created when you send a new fax");
 
 });
 
@@ -79,22 +85,22 @@ app.get("/sendprot", (req, res) => {
 app.get("/status", (req, res) => {
   res.write("STATUS PAGE\r\n\r\n");
 
-  exec_string = "sudo /usr/sbin/asterisk -rx 'sip show peers' | grep online | awk '{print $5}'";
+  exec_string = "/usr/sbin/asterisk -rx 'sip show peers' | grep online | awk '{print $5}'";
   exec(exec_string, (error, stdout, stderr) => {
     res.write(`Number of online SIP Peers: ${stdout} (should be 2. Below 2 means timeout of the fritzbox. Then wait 15 min.) \r\n\r\n`);
   });
   
-  exec_string = "sudo /usr/sbin/asterisk -rx 'iax2 show peers' | grep online | awk '{print $4}'";
+  exec_string = "/usr/sbin/asterisk -rx 'iax2 show peers' | grep online | awk '{print $4}'";
   exec(exec_string, (error, stdout, stderr) => {
     res.write(`Number of online IAX Modems: ${stdout.substring(1,2)} \r\n (should be 1. If not wait 3 minutes for it to start) \r\n\r\n`);
   });
 
-  exec_string = "faxstat -s | grep '0:' | awk '{print $1}'";
+  exec_string = "/usr/bin/faxstat -s | grep '0:' | awk '{print $1}'";
   exec(exec_string, (error, stdout, stderr) => {
     res.write(`ID of old faxes pending in the queue?: '${stdout}' (should be emtpy ''. Use the faxrm tool to remove faxes from the queue) \r\n\r\n`);
   });
 
-  exec_string = "ping -c1 fritz.box | grep 'seq=1' | awk '{print $1}'";
+  exec_string = "/bin/ping -c1 fritz.box | grep 'seq=0' | awk '{print $1}'";
   exec(exec_string, (error, stdout, stderr) => {
     res.end(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 0.1 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
   });
