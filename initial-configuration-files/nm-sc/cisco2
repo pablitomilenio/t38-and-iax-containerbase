@@ -1,0 +1,31 @@
+[connection]
+id=cisco2
+uuid=dd4624e5-b810-4b87-844d-7fc120d1afd8
+type=vpn
+autoconnect=false
+interface-name=tun0
+permissions=user:pablo:;
+
+[vpn]
+IKE DH Group=dh2
+IPSec ID=asdf
+IPSec gateway=asdf
+IPSec secret-flags=2
+Local Port=0
+NAT Traversal Mode=natt
+Perfect Forward Secrecy=server
+Vendor=cisco
+Xauth password-flags=2
+Xauth username=asdf
+ipsec-secret-type=ask
+xauth-password-type=ask
+service-type=org.freedesktop.NetworkManager.vpnc
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto

@@ -21,6 +21,12 @@ EXPOSE 30000-30100:30000-30100/udp
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
 RUN apt-get update && apt-get install git wget inetutils-ping nano -y
 
+# Install VPN Client compatible with Cisco
+RUN apt-get install network-manager-vpnc -y 
+
+# Install FOP for creating PDFs
+RUN apt-get install fop -y
+
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
 
@@ -48,6 +54,7 @@ COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
 COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
+COPY initial-configuration-files/nm-sc/* /etc/NetworkManager/system-connections/
 
 # Copy Website
 COPY first-execution.sh /home/root/
@@ -62,6 +69,6 @@ RUN npm --prefix /home/root/website install /home/root/website
 # Run the Node Server
 RUN chmod 777 /home/root/first-execution.sh
 WORKDIR /home/root/
-ENTRYPOINT ["/home/root/first-execution.sh"]
+# ENTRYPOINT ["/home/root/first-execution.sh"]
 
 

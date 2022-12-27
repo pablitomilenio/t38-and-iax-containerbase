@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: foip
-        image: pablitomilenios/fax-foip-fritzbox:version18
+        image: pablitomilenios/fritzbox-foip-fax-over-ip:latest
         ports:
         - containerPort: 3000
         - containerPort: 5060
