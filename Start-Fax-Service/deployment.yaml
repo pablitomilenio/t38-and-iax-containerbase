@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: foip-app
+  name: fax-over-ip-fritzbox
   labels:
-    running: foip
+    running: fax-over-ip-fritzbox
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: foip
+      app: fax-over-ip-fritzbox
   template:
     metadata:
       labels:
-        app: foip
+        app: fax-over-ip-fritzbox
     spec:
       containers:
-      - name: foip
-        image: pablitomilenios/fritzbox-foip-fax-over-ip:latest
+      - name: fax-over-ip-fritzbox
+        image: pablitomilenios/fritzbox-foip-fax-over-ip
         ports:
         - containerPort: 3000
         - containerPort: 5060
