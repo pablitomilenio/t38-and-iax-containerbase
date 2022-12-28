@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: faxoverip
-        image: pablitomilenios/hfwk
+        image: pablitomilenios/fax-foip-fritzbox
         securityContext:
           capabilities:
             add:

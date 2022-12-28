@@ -38,6 +38,9 @@ RUN apt-get install fop -y
 # Install VPNC
 RUN apt-get install -y vpnc
 
+# Install Network-Manager
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y network-manager-vpnc
+
 # Install T.38 Modem
 # RUN apt-get install t38modem -y
 
@@ -61,8 +64,15 @@ RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/exp
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
+
+# Copy configuration files Network-Manager
+COPY initial-configuration-files/etc-NM/* /etc/NetworkManager/system-connections/
+RUN rm /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf && touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
+RUN rm /etc/NetworkManager/conf.d/10-globally-managed-devices.conf && touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf  
+
 #COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
 RUN touch /etc/hylafax/config.ttyIAX0
+RUN touch /var/spool/hylafax/config.ttyIAX0
 RUN touch /var/spool/hylafax/config.ttyIAX0
 COPY initial-configuration-files/swan/ /etc/
 

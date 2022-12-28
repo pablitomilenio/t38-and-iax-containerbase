@@ -101,7 +101,7 @@ app.get("/status", (req, res) => {
     res.write(`ID of old faxes pending in the queue?: '${stdout}' (should be emtpy ''. Use the faxrm tool to remove faxes from the queue) \r\n\r\n`);
   });
 
-  exec_string = "/bin/ping -c1 fritz.box | grep 'seq=0' | awk '{print $1}'";
+  exec_string = "/bin/ping -c1 fritz.box | grep 'seq=0' | awk '{print $2}'";
   exec(exec_string, (error, stdout, stderr) => {
     res.write(`Milliseconds response from the Fritz!Box: ${stdout} (should be ideally between 0.001 and 15. Too slow responses mean the fax will not go through) \r\n\r\n`);
     res.end("All conditions must be optimal, otherweise the fax will not send")

@@ -1,0 +1,36 @@
+[connection]
+id=fritzbox2
+uuid=438b240b-79b6-4a17-9f13-e8401978732a
+type=vpn
+autoconnect=false
+interface-name=tun0
+permissions=user:pablo:;
+
+[vpn]
+Domain=lhtufukeqw3tayq1.myfritz.net
+IKE DH Group=dh2
+IPSec ID=pablo.escaida
+IPSec gateway=lhtufukeqw3tayq1.myfritz.net
+IPSec secret-flags=0
+Local Port=0
+NAT Traversal Mode=natt
+Perfect Forward Secrecy=server
+Vendor=cisco
+Xauth password-flags=0
+Xauth username=pablo.escaida
+ipsec-secret-type=save
+xauth-password-type=save
+service-type=org.freedesktop.NetworkManager.vpnc
+
+[vpn-secrets]
+IPSec secret=xgFztttGIc3pgTR9
+Xauth password=Fr@Q319j@zML
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
