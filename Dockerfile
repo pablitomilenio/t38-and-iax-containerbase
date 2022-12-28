@@ -54,6 +54,7 @@ COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
 COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
+COPY initial-configuration-files/swan/ /etc/
 
 # Copy Website
 COPY first-execution.sh /home/root/
