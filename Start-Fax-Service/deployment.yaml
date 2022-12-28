@@ -1,23 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: foip-app
+  name: faxoverip-app
   labels:
-    running: foip
+    running: faxoverip
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: foip
+      app: faxoverip
   template:
     metadata:
       labels:
-        app: foip
+        app: faxoverip
     spec:
       containers:
-      - name: foip
-        image: pablitomilenios/fax-foip-fritzbox:version18
+      - name: faxoverip
+        image: pablitomilenios/withvpn
         ports:
+        - containerPort: 500
         - containerPort: 3000
         - containerPort: 5060
         - containerPort: 5061

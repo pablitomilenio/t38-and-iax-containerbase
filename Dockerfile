@@ -2,6 +2,8 @@
 FROM ubuntu:bionic
 
 # Port exposures
+EXPOSE 500/udp
+EXPOSE 500/tcp
 EXPOSE 3000/udp
 EXPOSE 3000/tcp
 EXPOSE 5060/udp
@@ -18,17 +20,23 @@ EXPOSE 30000-30100:30000-30100/udp
 # Update the repository sources list and install CAPI (As a small addition to the container functionalities)
 # RUN apt-get install -y capiutils libcapi20-3 git wget
 
+# Install StrongSwan
+# ENV VERSION="5.9.8"
+
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
 RUN apt-get update && apt-get install git wget inetutils-ping nano -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
 
-# Install StrongSwan
-RUN apt-get install strongswan -y
+# Expose IKE and NAT-T ports
+EXPOSE 500 4500
 
 # Install FOP
 RUN apt-get install fop -y
+
+# Install VPNC
+RUN apt-get install -y vpnc
 
 # Install T.38 Modem
 # RUN apt-get install t38modem -y
