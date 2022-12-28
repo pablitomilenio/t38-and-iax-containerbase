@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: faxoverip-app
+  name: fax-over-ip-fritzbox
   labels:
     running: faxoverip
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: faxoverip
-        image: pablitomilenios/withvpn2
+        image: pablitomilenios/hfwk
         securityContext:
           capabilities:
             add:
