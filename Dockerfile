@@ -61,7 +61,9 @@ RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/exp
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
-COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
+#COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
+RUN touch /etc/hylafax/config.ttyIAX0
+RUN touch /var/spool/hylafax/config.ttyIAX0
 COPY initial-configuration-files/swan/ /etc/
 
 # Copy Website
