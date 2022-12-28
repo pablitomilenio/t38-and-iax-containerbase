@@ -16,10 +16,17 @@ spec:
     spec:
       containers:
       - name: faxoverip
-        image: pablitomilenios/withvpn
+        image: pablitomilenios/withvpn2
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - SYS_ADMIN
+            - SYS_MODULE
         ports:
         - containerPort: 500
         - containerPort: 3000
         - containerPort: 5060
         - containerPort: 5061
         - containerPort: 6060
+
