@@ -18,7 +18,6 @@ spec:
       - name: faxoverip
         image: pablitomilenios/fax-foip-fritzbox:bt3
         securityContext:
-          privileged: true
           capabilities:
             add:
             - NET_ADMIN
@@ -30,3 +29,4 @@ spec:
         - containerPort: 5060
         - containerPort: 5061
         - containerPort: 6060
+
