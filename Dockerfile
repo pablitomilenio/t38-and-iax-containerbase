@@ -64,17 +64,16 @@ RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/exp
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
+COPY initial-configuration-files/swan/ /etc/
 
 # Copy configuration files Network-Manager
 COPY initial-configuration-files/etc-NM/* /etc/NetworkManager/system-connections/
 RUN rm /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf && touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
-RUN rm /etc/NetworkManager/conf.d/10-globally-managed-devices.conf && touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf  
+RUN touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf  
 
 #COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
 RUN touch /etc/hylafax/config.ttyIAX0
 RUN touch /var/spool/hylafax/config.ttyIAX0
-RUN touch /var/spool/hylafax/config.ttyIAX0
-COPY initial-configuration-files/swan/ /etc/
 
 # Copy Website
 COPY first-execution.sh /home/root/
