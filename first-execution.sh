@@ -9,5 +9,6 @@ exec asterisk &
 # exec vpnc fritzbox &
 # exec service dbus start &
 # exec service network-manager start &
+exec service ipsec start &
 exec ipsec up fritzbox &
 exec node /home/root/website/server.js
