@@ -27,11 +27,12 @@ EXPOSE 10000/udp
 # Update the repository sources list and install CAPI (As a small addition to the container functionalities)
 # RUN apt-get install -y capiutils libcapi20-3 git wget
 
-# Install StrongSwan
-# ENV VERSION="5.9.8"
-
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
 RUN apt-get update && apt-get install git wget inetutils-ping nano -y
+
+# Install StrongSwan
+# ENV VERSION="5.9.8"
+RUN apt-get install strongswan -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
