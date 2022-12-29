@@ -15,6 +15,13 @@ EXPOSE 6060/tcp
 EXPOSE 30000-30100:30000-30100/tcp
 EXPOSE 30000-30100:30000-30100/udp
 
+# Expose IKE and NAT-T ports
+EXPOSE 500 4500
+
+# for IPSec vpnc
+EXPOSE 10000/tcp
+EXPOSE 10000/udp
+
 # Info: please name this image: "FOIP-containerbase" for further use in docker" for further use in compose
 
 # Update the repository sources list and install CAPI (As a small addition to the container functionalities)
@@ -28,9 +35,6 @@ RUN apt-get update && apt-get install git wget inetutils-ping nano -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
-
-# Expose IKE and NAT-T ports
-EXPOSE 500 4500
 
 # Install FOP
 RUN apt-get install fop -y

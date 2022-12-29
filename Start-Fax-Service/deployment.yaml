@@ -27,6 +27,7 @@ spec:
         ports:
         - containerPort: 500
         - containerPort: 3000
-        - containerPort: 5060
+        - containerPort: 4500
+        - containerPort: 5060       
         - containerPort: 5061
         - containerPort: 6060
