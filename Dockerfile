@@ -28,7 +28,7 @@ EXPOSE 10000/udp
 # RUN apt-get install -y capiutils libcapi20-3 git wget
 
 # Update to the latest packages list (mandatory, if not it will not know iaxmodem)
-RUN apt-get update && apt-get install git wget inetutils-ping nano -y
+RUN apt-get update && apt-get install git wget inetutils-ping nano kmod -y
 
 # Install StrongSwan
 # ENV VERSION="5.9.8"
