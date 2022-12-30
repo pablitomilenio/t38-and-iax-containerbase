@@ -34,6 +34,9 @@ RUN apt-get update && apt-get install git wget inetutils-ping nano kmod -y
 # ENV VERSION="5.9.8"
 RUN apt-get install strongswan -y
 
+# Install Build Essential
+apt-get install build-essential libgmp-dev -y
+
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
 
