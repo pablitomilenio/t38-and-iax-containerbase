@@ -32,38 +32,38 @@ RUN apt-get update && apt-get install git wget inetutils-ping nano kmod -y
 
 # Install StrongSwan
 # ENV VERSION="5.9.8"
-RUN apt-get install strongswan -y
+# RUN apt-get install strongswan -y
 
 # Install Build Essential
-apt-get install build-essential libgmp-dev -y
+RUN apt-get install build-essential libgmp-dev -y
 
 # Install IAX Modem
-RUN apt-get install iaxmodem -y
+# RUN apt-get install iaxmodem -y
 
 # Install FOP
-RUN apt-get install fop -y
+# RUN apt-get install fop -y
 
 # Install VPNC
-RUN apt-get install -y vpnc
+# RUN apt-get install -y vpnc
 
 # Install Network-Manager
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y network-manager-vpnc
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y network-manager-vpnc
 
 # Install T.38 Modem
 # RUN apt-get install t38modem -y
 
 # Install The Asterix Phone Central
-RUN DEBIAN_FRONTEND=noninteractive apt-get install asterisk -y
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install asterisk -y
 
 # Install HylaFax
-RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install hylafax-server -y 
 
 RUN apt-get install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get update
+# RUN apt-get update
 
 # Install Node.js
-RUN DEBIAN_FRONTEND=noninteractive apt-get install nodejs -y 
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install nodejs -y 
 
 # Make Folders
 RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/express && mkdir /home/root/website/express/styles && mkdir /home/root/website/uploads && mkdir /home/root/website/prot/
@@ -91,7 +91,7 @@ COPY website/express* /home/root/website/express/
 COPY website/express/styles* /home/root/website/express/styles/
 
 # Run NPM Install
-RUN npm --prefix /home/root/website install /home/root/website
+# RUN npm --prefix /home/root/website install /home/root/website
 
 # Run the Node Server
 RUN chmod 777 /home/root/first-execution.sh
