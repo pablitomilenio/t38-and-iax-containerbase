@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install git wget inetutils-ping nano kmod -y
 
 # Install StrongSwan
 # ENV VERSION="5.9.8"
-RUN apt-get install strongswan -y
+# RUN apt-get install strongswan -y
 
 # Install IAX Modem
 RUN apt-get install iaxmodem -y
@@ -41,10 +41,13 @@ RUN apt-get install iaxmodem -y
 RUN apt-get install fop -y
 
 # Install VPNC
-RUN apt-get install -y vpnc
+# RUN apt-get install -y vpnc
+
+# Install IKE
+RUN apt-get install -y ike
 
 # Install Network-Manager
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y network-manager-vpnc
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y network-manager-vpnc
 
 # Install T.38 Modem
 # RUN apt-get install t38modem -y
@@ -64,17 +67,19 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install nodejs -y
 
 # Make Folders
 RUN mkdir /home/root && mkdir /home/root/website && mkdir /home/root/website/express && mkdir /home/root/website/express/styles && mkdir /home/root/website/uploads && mkdir /home/root/website/prot/
+RUN mkdir /home/root/.ike && mkdir /home/root/.ike/sites
 
 # Copy configuration files
 COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
 COPY initial-configuration-files/swan/ /etc/
+COPY initial-configuration-files/ike/ /home/root/.ike/sites/*
 
 # Copy configuration files Network-Manager
-COPY initial-configuration-files/etc-NM/* /etc/NetworkManager/system-connections/
-RUN rm /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf && touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
-RUN touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf  
+# COPY initial-configuration-files/etc-NM/* /etc/NetworkManager/system-connections/
+# RUN rm /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf && touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
+# RUN touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf  
 
 #COPY initial-configuration-files/etc-hylafax/ /etc/hylafax/
 RUN touch /etc/hylafax/config.ttyIAX0
