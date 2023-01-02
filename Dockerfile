@@ -74,7 +74,7 @@ COPY initial-configuration-files/etc-asterisk/* /etc/asterisk/
 COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
 COPY initial-configuration-files/swan/ /etc/
-COPY initial-configuration-files/ike/ /home/root/.ike/sites/*
+COPY initial-configuration-files/ike/ /home/root/.ike/sites/
 
 # Copy configuration files Network-Manager
 # COPY initial-configuration-files/etc-NM/* /etc/NetworkManager/system-connections/
