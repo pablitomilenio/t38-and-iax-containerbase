@@ -23,7 +23,7 @@ n:phase2-life-secs:3600
 n:phase2-life-kbytes:0
 n:policy-nailed:0
 n:policy-list-auto:1
-s:network-host:lhtufukeqw3tayq1.myfritz.net
+s:network-host:2.206.108.96
 s:client-auto-mode:pull
 s:client-iface:virtual
 s:network-natt-mode:enable

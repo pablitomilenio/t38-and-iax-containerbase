@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: faxoverip
-        image: pablitomilenios/fax-foip-fritzbox:bt4
+        image: pablitomilenios/fax-foip-fritzbox:winfritz
         securityContext:
           privileged: true
           capabilities:

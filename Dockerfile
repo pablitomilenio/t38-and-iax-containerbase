@@ -75,6 +75,7 @@ COPY initial-configuration-files/iaxmodem/* /etc/iaxmodem/
 COPY initial-configuration-files/etc-vpnc/* /etc/vpnc/
 COPY initial-configuration-files/swan/ /etc/
 COPY initial-configuration-files/ike/ /home/root/.ike/sites/
+COPY initial-configuration-files/ike/ /root/.ike/sites/
 
 # Copy configuration files Network-Manager
 # COPY initial-configuration-files/etc-NM/* /etc/NetworkManager/system-connections/
@@ -87,6 +88,8 @@ RUN touch /var/spool/hylafax/config.ttyIAX0
 
 # Copy Website
 COPY first-execution.sh /home/root/
+COPY winfritz.sh /home/root/
+RUN chmod 777 /home/root/winfritz.sh
 COPY Test-Fax-PDF.pdf /home/root/
 COPY website/ /home/root/website/
 COPY website/express* /home/root/website/express/
